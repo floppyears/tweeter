@@ -115,3 +115,7 @@ log4j.main = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+grails.gorm.default.constraints = {
+    mustFill(blank: false, nullable: false)
+}
