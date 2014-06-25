@@ -1,6 +1,7 @@
 package tweeter
 
 class User {
+    static hasMany = [tweet: Tweet]
     int id
     String username
     String firstname
