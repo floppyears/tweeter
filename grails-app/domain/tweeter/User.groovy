@@ -1,19 +1,18 @@
 package tweeter
 
 class User {
-    static hasMany = [tweet: Tweet]
-    int id
+    static hasMany = [tweets: Tweet]
     String username
-    String firstname
-    String lastname
+    String firstName
+    String lastName
     String email
+    Date creationDate
 
 
     static constraints = {
-        id unique: true
         username shared: "mustFill", size: 4..15
-        firstname shared: "mustFill"
-        lastname shared: "mustFill"
+        firstName shared: "mustFill"
+        lastName shared: "mustFill"
         email shared: "mustFill", email: true
     }
 }
