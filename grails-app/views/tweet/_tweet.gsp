@@ -1,7 +1,9 @@
 <!-- Display a tweet -->
-<div>
-    <div>
-        <g:link action="show" id="${tweet.author.id}">${tweet.author.username}</g:link> @ ${tweet.createDate}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <g:link action="show" id="${tweet.author.id}">@${tweet.author.username}</g:link> @ ${tweet.createDate}
     </div>
-    <p>${tweet.text}</p>
+    <div class="panel-body">
+        <p>${tweet.text}</p>
+    </div>
 </div>

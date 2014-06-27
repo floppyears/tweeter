@@ -5,8 +5,6 @@
 </head>
 
 <body>
-    <div>
-        <g:render template="/tweet/tweet" collection="${user.tweets}" var="tweet" />
-    </div>
+<g:render template="/tweet/tweet" collection="${user.tweets}" var="tweet" />
 </body>
 </html>
