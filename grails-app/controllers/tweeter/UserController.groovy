@@ -1,5 +1,7 @@
 package tweeter
 
+
+
 class UserController {
 
     def index() {
@@ -12,7 +14,7 @@ class UserController {
     def register() {
         if(!session.user) {
             User newUser = new User(params);
-            newUser.creationDate = Date().now
+            newUser.creationDate = new Date()
             if (!newUser.save()) {
                 return [ user: newUser ]
             } else {

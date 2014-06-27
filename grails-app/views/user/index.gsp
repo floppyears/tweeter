@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Home</title>
+  <meta name="layout" content="custom"/>
 </head>
 <body>
     <div>
