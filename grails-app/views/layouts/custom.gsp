@@ -15,13 +15,16 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <!-- if logged in show logout btn else show login btn -->
+
             <g:if test="${session.user}">
                 <ul class="nav navbar-nav navbar-right">
                     <li><g:link action="show" controller="user" id="${session.user.id}">${session.user.username}</g:link></li>
+                    <li>
+                    <g:form action="logout" controller="user" class="navbar-form" role="form">
+                        <g:submitButton class="btn btn-default" name="logout" value="Logout" />
+                    </g:form>
+                    </li>
                 </ul>
-                <g:form action="logout" controller="user" class="navbar-form navbar-right" role="form">
-                    <g:submitButton class="btn btn-default" name="logout" value="Logout" />
-                </g:form>
             </g:if>
             <g:else>
                 <g:form action="login" controller="user" class="navbar-form navbar-right" role="form">
