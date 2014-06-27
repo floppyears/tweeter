@@ -26,7 +26,7 @@
             </div>
             <div>
                 <label for="email"></label>
-                <g:textField name="email" value=""/>
+                <g:textField name="email" value="${user?.email}"/>
             </div>
             <g:submitButton name="register" value="Register" />
         </g:form>
