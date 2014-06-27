@@ -22,6 +22,25 @@ class UserController {
                 render view: "index.gsp", user: newUser
             }
         }
+        else {
+            render view: "index", user: session.user
+        }
+    }
+
+    def login() {
+        User user = User.findByUsername(params.username)
+        if (!user) {
+            render view: "register"
+        }
+        else {
+            session.user = user
+            render view: "index", user: user
+        }
+    }
+
+    def logout() {
+        session.user = null
+        render view: "register"
     }
 
     def show() {
