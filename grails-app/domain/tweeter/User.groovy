@@ -6,7 +6,7 @@ class User {
     String firstName
     String lastName
     String email
-    Date creationDate
+    Date dateCreated
 
     static constraints = {
         username shared: "mustFill", unique: true, size: 4..15

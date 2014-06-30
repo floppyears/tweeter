@@ -3,10 +3,9 @@ package tweeter
 class Tweet {
     static belongsTo = [author: User]
     String text
-    Date createDate
+    Date dateCreated
 
     static constraints = {
         text shared: "mustFill", maxSize: 140
-        createDate shared: "mustFill"
     }
 }
