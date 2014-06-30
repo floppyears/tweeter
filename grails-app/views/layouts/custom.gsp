@@ -11,14 +11,14 @@
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Tweeter</a>
+            <a class="navbar-brand" href="/tweeter">Tweeter</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <!-- if logged in show logout btn else show login btn -->
 
-            <g:if test="${session.user}">
+            <g:if test="${session.username}">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><g:link action="show" controller="user" id="${session.user.id}">${session.user.username}</g:link></li>
+                    <li><g:link action="show" controller="user" id="${session.userId}">${session.username}</g:link></li>
                     <li>
                     <g:form action="logout" controller="user" class="navbar-form" role="form">
                         <g:submitButton class="btn btn-default" name="logout" value="Logout" />
