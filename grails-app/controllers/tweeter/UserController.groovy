@@ -5,25 +5,27 @@ package tweeter
 class UserController {
 
     def index() {
-        if(!session.user) {
+        User user = User.get(session.userId)
+        if(!user) {
             render view: "register"
         }
-        [ user:session.user ]
+        [ user:user, strSaved:params.strSaved ]
     }
 
     def register() {
-        if(!session.user) {
-            User newUser = new User(params);
-            newUser.creationDate = new Date()
-            if (!newUser.save()) {
-                return [ user: newUser ]
+        User user = User.get(session.userId)
+        if(!user) {
+            user = new User(params);
+            if (!user.save()) {
+                return [ user: user ]
             } else {
-                session.user = newUser
-                render view: "index.gsp", user: newUser
+                session.userId = user.id
+                session.username = user.username
+                render view: "index", user: user
             }
         }
         else {
-            render view: "index", user: session.user
+            render view: "index", user: user
         }
     }
 
@@ -33,17 +35,19 @@ class UserController {
             render view: "register"
         }
         else {
-            session.user = user
+            session.userId = user.id
+            session.username = user.username
             render view: "index", user: user
         }
     }
 
     def logout() {
-        session.user = null
+        session.invalidate()
         render view: "register"
     }
 
     def show() {
+        println params
         [ user:User.get(params.id) ]
     }
 }
