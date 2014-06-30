@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>${user.username}'s tweets</title>
+    <meta name="layout" content="custom"/>
 </head>
 
 <body>
