@@ -13,9 +13,9 @@ class UserController {
     }
 
     def register() {
-        User user = User.get(session.userId)
+        Person user = Person.get(session.userId)
         if(!user) {
-            user = new User(params);
+            user = new Person(params);
             if (!user.save()) {
                 return [ user: user ]
             } else {
@@ -30,7 +30,7 @@ class UserController {
     }
 
     def login() {
-        User user = User.findByUsername(params.username)
+        Person user = Person.findByUsername(params.username)
         if (!user) {
             render view: "register"
         }

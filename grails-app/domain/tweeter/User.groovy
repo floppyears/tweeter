@@ -1,29 +1,20 @@
 package tweeter
 
 class User {
-    static hasMany = [tweets: Tweet]
-    String username
-    String firstName
-    String lastName
-    String email
+    static hasMany = [followers: User]
+    String name
     Date dateCreated
+    Date lastUpdated
 
     static constraints = {
-        username shared: "mustFill", unique: true, size: 4..15
-        firstName shared: "mustFill"
-        lastName shared: "mustFill"
-        email shared: "mustFill", email: true
+        name shared: "mustFill", size: 3..20
     }
 
-    static mapping = {
-        tweets sort: 'dateCreated', order: 'desc'
-    }
-
-    String getName() {
-        return firstName << ' ' << lastName
+    String getFollowed() {
+        return User.findAll("from User where ? in elements(followers)", [this])
     }
 
     static transients = {
-        name
+        followed
     }
 }

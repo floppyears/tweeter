@@ -18,12 +18,8 @@
         <g:textField id="username" class="form-control" name="username" value="${user?.username}" placeholder="username"/>
     </div>
     <div class="form-group">
-        <label for="firstName">First Name</label>
-        <g:textField class="form-control" name="firstName" value="${user?.firstName}" placeholder="John"/>
-    </div>
-    <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <g:textField class="form-control" name="lastName" value="${user?.lastName}" placeholder="Doe"/>
+        <label for="name">Full Name</label>
+        <g:textField class="form-control" name="name" value="${user?.name}" placeholder="John"/>
     </div>
     <div class="form-group">
         <label for="email">Email</label>
