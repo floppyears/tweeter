@@ -15,6 +15,10 @@ class User {
         email shared: "mustFill", email: true
     }
 
+    static mapping = {
+        tweets sort: 'dateCreated', order: 'desc'
+    }
+
     String getName() {
         return firstName << ' ' << lastName
     }
