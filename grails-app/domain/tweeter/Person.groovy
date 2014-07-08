@@ -1,7 +1,7 @@
 package tweeter
 
 class Person extends User {
-    static hasMany = [tweets: Tweet]
+    static hasMany = [tweets: Tweet, groups: Group]
     String username
     String email
 

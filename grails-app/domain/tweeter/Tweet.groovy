@@ -1,7 +1,7 @@
 package tweeter
 
 class Tweet {
-    static belongsTo = [author: User]
+    static belongsTo = [author: Person]
     String text
     Date dateCreated
 
