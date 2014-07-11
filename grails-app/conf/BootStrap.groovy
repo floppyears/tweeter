@@ -10,6 +10,7 @@ class BootStrap {
         println "BOOTSTRAP INIT"
         makePeople()
         makeGroups()
+        makeFollowers()
         makeTweets()
     }
 
@@ -35,8 +36,47 @@ class BootStrap {
         people << ken
         people << bob
         for(person in people) {
-            person.save()
+            if(!person.save()) {
+                println person.errors
+            }
         }
+    }
+
+    def makeFollowers() {
+        println "MAKE FOLLOWERS"
+        people[0].addToFollowers(people[1])
+        people[0].addToFollowers(people[2])
+        people[0].save()
+
+        println "ADDING TO JEN"
+        people[1].addToFollowers(people[2])
+        people[1].addToFollowers(people[3])
+        people[1].addToFollowers(people[4])
+        people[1].save()
+
+        println "ADDING TO KIRA"
+        people[2].addToFollowers(people[0])
+        people[2].addToFollowers(people[3])
+        people[2].addToFollowers(people[4])
+        people[2].save()
+
+        println "ADDING TO KEN"
+        people[3].addToFollowers(people[0])
+        people[3].addToFollowers(people[1])
+        people[3].save()
+
+        println "ADDING TO BOB"
+        people[4].addToFollowers(people[3])
+        people[4].save()
+
+        /*
+        println "SAVING FOLLOWERS"
+        for(person in people) {
+            println "SAVING: " << person
+            println person.followers
+            println person.save()
+            println person.errors
+        }*/
     }
 
     def makeGroups() {
@@ -44,6 +84,7 @@ class BootStrap {
         Group grpOne = new Group(name: "Group 1", description: "Users andy, jen, and kira.", owner: people[0])
         Group grpTwo = new Group(name: "Group 2", description: "Users ken, and bob.", owner: people[3])
         Group grpThree = new Group(name: "Group 3", description: "Users andy, jen, kira, ken, and bob.", owner: people[1])
+
 
         assert grpOne.save()
         assert grpTwo.save()
@@ -61,6 +102,7 @@ class BootStrap {
         grpThree.addToFollowers(people[2])
         grpThree.addToFollowers(people[3])
         grpThree.addToFollowers(people[4])
+
 
         assert grpOne.save()
         assert grpTwo.save()
@@ -89,25 +131,28 @@ class BootStrap {
 
     def removePeople() {
         println "REMOVE PEOPLE"
+        if(people == null) {
+            people = Person.all
+        }
         for(person in people) {
-            person.delete()
+            person.delete(flush:true)
         }
     }
 
     def removeGroups() {
         println "REMOVE GROUPS"
-        for(person in people) {
+        for(person in Person.all) {
             for(group in person.groups) {
-                group.delete()
+                group.delete(flush:true)
             }
         }
     }
 
     def removeTweets() {
         println "REMOVE TWEETS"
-        for(person in people) {
+        for(person in Person.all) {
             for(tweet in person.tweets) {
-                tweet.delete()
+                tweet.delete(flush:true)
             }
         }
     }

@@ -8,6 +8,7 @@ import spock.lang.*
  *
  */
 class GroupIntegrationSpec extends Specification {
+    static transactional = false
 
     def setup() {
     }
@@ -16,12 +17,12 @@ class GroupIntegrationSpec extends Specification {
     }
 
     void "test get group tweets"() {
-        when: "People are in a group"
+        given:
         Group grp = Group.findByName("Group 1")
         List<String> tweetsText = grp.tweets.text
 
 
-        then: "Their tweets should be in the groups tweets"
+        expect:
         tweetsText.contains("Andy's tweet!")
         tweetsText.contains("Jen's tweet!")
         tweetsText.contains("Kira's tweet!")
@@ -29,17 +30,11 @@ class GroupIntegrationSpec extends Specification {
         !tweetsText.contains("Bob's tweet!")
     }
 
-    /**
-     * Test fails because group has no followers. However,
-     * it is apparent that it at one point did as the previous
-     * test returned tweets which requires followers. Groups
-     * seems to remove their followers after a bit for some reason?
-     */
     void "test get group followers"() {
-        when: "People are followers of a group"
+        given:
         Group grp = Group.findByName("Group 1")
 
-        then: "Only those people should be in the groups followers"
+        expect:
         grp.followers.contains(Person.findByUsername("warand"))
         grp.followers.contains(Person.findByUsername("cohjen"))
         grp.followers.contains(Person.findByUsername("ludkir"))

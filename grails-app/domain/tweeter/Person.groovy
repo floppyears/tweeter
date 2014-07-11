@@ -1,7 +1,11 @@
 package tweeter
 
+import tweeter.User
+
 class Person extends User {
+    static belongsTo = [followed: User]
     static hasMany = [tweets: Tweet, groups: Group]
+    static mappedBy = [groups: "owner"]
     String username
     String email
 
@@ -13,6 +17,5 @@ class Person extends User {
     static mapping = {
         tweets sort: 'dateCreated', order: 'desc'
     }
-
 
 }
