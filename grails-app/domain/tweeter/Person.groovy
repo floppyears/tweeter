@@ -1,9 +1,8 @@
 package tweeter
 
 class Person extends User {
-    static belongsTo = User
     static hasMany = [tweets: Tweet, groups: Group, follows: User]
-    static mappedBy = [tweets: "author", groups: "owner", follows: "followers"]
+    static mappedBy = [tweets: "author", groups: "owner"]
     String username
     String email
 

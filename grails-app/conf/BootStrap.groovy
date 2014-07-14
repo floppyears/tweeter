@@ -46,37 +46,42 @@ class BootStrap {
         println "MAKE FOLLOWERS"
         people[0].addToFollowers(people[1])
         people[0].addToFollowers(people[2])
-        people[0].save()
+        //people[0].save()
 
         println "ADDING TO JEN"
         people[1].addToFollowers(people[2])
         people[1].addToFollowers(people[3])
         people[1].addToFollowers(people[4])
-        people[1].save()
+        //people[1].save()
 
         println "ADDING TO KIRA"
         people[2].addToFollowers(people[0])
         people[2].addToFollowers(people[3])
         people[2].addToFollowers(people[4])
-        people[2].save()
+        //people[2].save()
 
         println "ADDING TO KEN"
         people[3].addToFollowers(people[0])
         people[3].addToFollowers(people[1])
-        people[3].save()
+        //people[3].save()
 
         println "ADDING TO BOB"
         people[4].addToFollowers(people[3])
-        people[4].save()
+        //people[4].save()
 
-        /*
+
         println "SAVING FOLLOWERS"
         for(person in people) {
             println "SAVING: " << person
             println person.followers
-            println person.save()
-            println person.errors
-        }*/
+            if(person.save()) {
+                println "SAVED!"
+            }
+            else {
+                println "SOMETHING WENT WRONG!"
+                println person.errors
+            }
+        }
     }
 
     def makeGroups() {

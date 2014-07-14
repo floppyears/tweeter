@@ -1,8 +1,8 @@
 package tweeter
 
 class User {
+    static belongsTo = Person
     static hasMany = [followers: Person]
-    static mappedBy = [followers: "follows"]
     String name
     Date dateCreated
     Date lastUpdated

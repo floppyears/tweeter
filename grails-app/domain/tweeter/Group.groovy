@@ -1,7 +1,6 @@
 package tweeter
 
 class Group extends User {
-
     static belongsTo = [owner: Person]
     static mappedBy = [owner: "groups"]
     String description
