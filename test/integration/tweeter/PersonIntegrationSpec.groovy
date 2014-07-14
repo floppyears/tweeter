@@ -15,7 +15,7 @@ class PersonIntegrationSpec extends Specification {
 
     def cleanup() {
     }
-       /*
+
     void "test get user's followers"() {
         given:
         Person andy = Person.findByUsername("warand")
@@ -26,5 +26,5 @@ class PersonIntegrationSpec extends Specification {
         andy.followers.contains(Person.findByUsername("ludkir"))
         !andy.followers.contains(Person.findByUsername("winken"))
         !andy.followers.contains(Person.findByUsername("colrob"))
-    }    */
+    }
 }

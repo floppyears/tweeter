@@ -1,8 +1,8 @@
 package tweeter
 
-abstract class User {
+class User {
     static hasMany = [followers: Person]
-    static mappedBy = [followers: "followed"]
+    static mappedBy = [followers: "follows"]
     String name
     Date dateCreated
     Date lastUpdated
@@ -10,12 +10,12 @@ abstract class User {
     static constraints = {
         name shared: "mustFill", size: 3..20
     }
-
+     /*
     def getFollowing() {
         return User.findAll("from User where ? in elements(followers)", [this])
     }
 
     static transients = {
         following
-    }
+    }      */
 }
