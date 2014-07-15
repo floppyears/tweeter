@@ -14,8 +14,8 @@
 </g:form>
 <g:alert saved="${strSaved}" />
 <div>
-    <g:if test="${user?.tweets}">
-        <g:render template="/tweet/tweet" collection="${user.tweets}" var="tweet" />
+    <g:if test="${user.followsTweets}">
+        <g:render template="/tweet/tweet" collection="${user.followsTweets}" var="tweet" />
     </g:if>
 </div>
 </body>

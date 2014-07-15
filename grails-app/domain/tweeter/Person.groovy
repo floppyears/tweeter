@@ -17,9 +17,14 @@ class Person extends User {
 
     static transients = {
         follows
+        followsTweets
     }
 
-    def getFollows() {
+    List<Tweet> getFollowsTweets() {
+        return follows.tweets.flatten()
+    }
+
+    List<User> getFollows() {
         return users.collect { it.followed }
     }
 

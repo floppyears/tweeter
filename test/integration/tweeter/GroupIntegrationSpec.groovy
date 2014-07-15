@@ -8,7 +8,6 @@ import spock.lang.*
  *
  */
 class GroupIntegrationSpec extends Specification {
-    static transactional = false
 
     def setup() {
     }

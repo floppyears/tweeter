@@ -14,6 +14,11 @@ class User {
 
     static transients = {
         followers
+        followersTweets
+    }
+
+    def getFollowersTweets() {
+        return followers.tweets.flatten()
     }
 
     def getFollowers() {

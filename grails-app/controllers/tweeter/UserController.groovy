@@ -47,7 +47,6 @@ class UserController {
     }
 
     def show() {
-        println params
         [ user:User.get(params.id) ]
     }
 }

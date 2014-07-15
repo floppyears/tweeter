@@ -59,7 +59,6 @@ class BootStrap {
         people[1].save()
 
         println "ADDING TO KIRA"
-        people[2].addToFollowers(people[0])
         people[2].addToFollowers(people[3])
         people[2].addToFollowers(people[4])
         people[2].save()
@@ -78,12 +77,10 @@ class BootStrap {
         println "MAKE GROUPS"
         Group grpOne = new Group(name: "Group 1", description: "Users andy, jen, and kira.", owner: people[0])
         Group grpTwo = new Group(name: "Group 2", description: "Users ken, and bob.", owner: people[3])
-        Group grpThree = new Group(name: "Group 3", description: "Users andy, jen, kira, ken, and bob.", owner: people[1])
 
 
         assert grpOne.save()
         assert grpTwo.save()
-        assert grpThree.save()
 
         grpOne.addToFollowers(people[0])
         grpOne.addToFollowers(people[1])
@@ -92,12 +89,6 @@ class BootStrap {
         grpTwo.addToFollowers(people[3])
         grpTwo.addToFollowers(people[4])
 
-        grpThree.addToFollowers(people[0])
-        grpThree.addToFollowers(people[1])
-        grpThree.addToFollowers(people[2])
-        grpThree.addToFollowers(people[3])
-        grpThree.addToFollowers(people[4])
-
 
         if(grpOne.save()) {
             println "grpOne SAVED!"
@@ -105,14 +96,11 @@ class BootStrap {
         if(grpTwo.save()) {
             println "grpTwo SAVED!"
         }
-        if(grpThree.save()) {
-            println "grpThree SAVED!"
-        }
     }
 
     def makeTweets() {
         println "MAKE TWEETS"
-        Tweet andyTweet = new Tweet([author: people[0], text: "Andy's tweet!"])
+        Tweet andyTweet = new Tweet(author: people[0], text: "Andy's tweet!")
         Tweet jenTweet = new Tweet(author: people[1], text: "Jen's tweet!")
         Tweet kiraTweet = new Tweet(author: people[2], text: "Kira's tweet!")
         Tweet kenTweet = new Tweet(author: people[3], text: "Ken's tweet!")

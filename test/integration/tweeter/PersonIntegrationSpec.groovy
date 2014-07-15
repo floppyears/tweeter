@@ -8,7 +8,6 @@ import spock.lang.*
  *
  */
 class PersonIntegrationSpec extends Specification {
-    static transactional = false
 
     def setup() {
     }
@@ -26,5 +25,18 @@ class PersonIntegrationSpec extends Specification {
         andy.followers.contains(Person.findByUsername("ludkir"))
         !andy.followers.contains(Person.findByUsername("winken"))
         !andy.followers.contains(Person.findByUsername("colrob"))
+    }
+
+    void "Test get user's follows tweets"() {
+        given:
+        Person andy = Person.findByUsername("warand")
+        List followsTweets = andy.followsTweets.text.flatten()
+
+        expect:
+        followsTweets.contains("Andy's tweet!")
+        followsTweets.contains("Jen's tweet!")
+        followsTweets.contains("Kira's tweet!")
+        followsTweets.contains("Ken's tweet!")
+        !followsTweets.contains("Bob's tweet!")
     }
 }

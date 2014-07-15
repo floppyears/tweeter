@@ -15,6 +15,12 @@ class TweetIntegrationSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
+    void "Test create tweet and save"() {
+        given:
+        Person andy = Person.findByUsername("warand")
+        andy.addToTweets(text: "Andy's new tweet!")
+
+        expect:
+        andy.save()
     }
 }

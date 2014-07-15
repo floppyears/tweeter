@@ -5,11 +5,11 @@ class Group extends User {
     static mappedBy = [owner: "groups"]
     String description
 
-    def getTweets() {
-        return followers.tweets.flatten()
-    }
-
     static transients = {
         tweets
+    }
+
+    def getTweets() {
+        return followers.tweets.flatten()
     }
 }
