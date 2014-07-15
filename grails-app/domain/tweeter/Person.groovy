@@ -1,8 +1,8 @@
 package tweeter
 
 class Person extends User {
-    static hasMany = [tweets: Tweet, groups: Group, follows: User]
-    static mappedBy = [tweets: "author", groups: "owner"]
+    static hasMany = [tweets: Tweet, groups: Group, users: UserFollower]
+    static mappedBy = [tweets: "author", groups: "owner", users:"follower"]
     String username
     String email
 
@@ -13,6 +13,22 @@ class Person extends User {
 
     static mapping = {
         tweets sort: 'dateCreated', order: 'desc'
+    }
+
+    static transients = {
+        follows
+    }
+
+    def getFollows() {
+        return users.collect { it.followed }
+    }
+
+    void addToFollows(User user) {
+        UserFollower.link(user, this)
+    }
+
+    void removeFromFollows(User user) {
+        UserFollower.unlink(user, this)
     }
 
 }
