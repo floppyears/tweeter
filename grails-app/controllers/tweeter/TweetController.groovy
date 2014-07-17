@@ -1,17 +1,16 @@
 package tweeter
 
 class TweetController {
+    TweetService ts
 
     def index() {
 
     }
 
     def create() {
-        User user = User.get(session.userId)
-        Tweet tweet = new Tweet([author: user, text:params.text])
-        def strSaved = user.save() ? "success" : "fail"
-        println tweet.save()
-        redirect(view:"index", controller:"user", params:[strSaved:strSaved])
+        Person person = Person.get(session.userId)
+        flash.tweetMsg = ts.createTweet(person, params.text) ? "success" : "fail"
+        redirect(view:"index", controller:"user")
     }
 
     def delete() {

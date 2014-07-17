@@ -37,7 +37,7 @@ class UserController {
         else {
             session.userId = user.id
             session.username = user.username
-            render view: "index", user: user
+            render view: "index", model: [user: user]
         }
     }
 

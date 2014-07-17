@@ -12,10 +12,10 @@
     </div>
     <g:submitButton class="btn btn-default" name="create" value="Save" />
 </g:form>
-<g:alert saved="${strSaved}" />
+<g:alert saved="${flash.tweetMsg}" />
 <div>
     <g:if test="${user.followsTweets}">
-        <g:render template="/tweet/tweet" collection="${user.followsTweets}" var="tweet" />
+        <g:render template="/tweet/tweet" collection="${user.followsTweets.sort{a, b -> b.dateCreated <=> a.dateCreated}}" var="tweet" />
     </g:if>
 </div>
 </body>

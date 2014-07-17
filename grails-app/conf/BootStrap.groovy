@@ -2,6 +2,10 @@ import tweeter.Group
 import tweeter.Person
 import tweeter.Tweet
 
+
+/*
+    Figure out how to load data only when testing (not when in production)
+ */
 class BootStrap {
     List<Person> people
 
