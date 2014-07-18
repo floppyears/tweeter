@@ -4,6 +4,10 @@ package tweeter
 
 class UserController {
 
+    def staticPage() {
+
+    }
+
     def index() {
         User user = User.get(session.userId)
         if(!user) {

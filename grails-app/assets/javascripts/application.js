@@ -7,7 +7,9 @@
 //
 //= require jquery
 //= require bootstrap
-//= require_tree .
+//= require angular
+//= require main
+//= require_tree ./angular
 //= require_self
 
 if (typeof jQuery !== 'undefined') {
