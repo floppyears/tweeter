@@ -8,4 +8,8 @@ class Tweet {
     static constraints = {
         text shared: "mustFill", maxSize: 140
     }
+
+    def toMap() {
+        [author: [id:this.author.id, username: this.author.username], text: this.text, dateCreated: this.dateCreated]
+    }
 }

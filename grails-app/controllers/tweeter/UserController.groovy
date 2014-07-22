@@ -1,11 +1,21 @@
 package tweeter
 
-
+import grails.converters.JSON
 
 class UserController {
 
     def staticPage() {
 
+    }
+
+    def userByName() {
+        Person person = Person.findByUsername(params.username)
+        def uMap = [:]
+        uMap.id = person.id
+        uMap.username = person.username
+        uMap.tweets = []
+        person.tweets.collect { uMap.tweets << it.toMap() }
+        render uMap as JSON
     }
 
     def index() {

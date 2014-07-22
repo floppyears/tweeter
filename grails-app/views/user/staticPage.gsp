@@ -1,12 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-  <title>Angular Static</title>
-    <meta name="layout" content="custom"/>
+  <title>Tweeter</title>
+  <meta name="layout" content="custom"/>
 </head>
 <body>
-    <div ng-controller="userController">
-        {{ message }}
-    </div>
+    <div ui-view></div>
 </body>
 </html>

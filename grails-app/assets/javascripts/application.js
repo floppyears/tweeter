@@ -8,6 +8,8 @@
 //= require jquery
 //= require bootstrap
 //= require angular
+//= require angular-route
+//= require angular-ui-router
 //= require main
 //= require_tree ./angular
 //= require_self

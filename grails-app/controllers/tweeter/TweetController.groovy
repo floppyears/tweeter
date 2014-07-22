@@ -1,5 +1,7 @@
 package tweeter
 
+import grails.converters.JSON
+
 class TweetController {
     TweetService ts
 
