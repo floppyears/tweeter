@@ -3,6 +3,7 @@ package tweeter
 import grails.converters.JSON
 
 class UserController {
+    UserService us
 
     def staticPage() {
 
@@ -14,7 +15,15 @@ class UserController {
         uMap.id = person.id
         uMap.username = person.username
         uMap.tweets = []
-        person.tweets.collect { uMap.tweets << it.toMap() }
+        person.tweets.collect{ uMap.tweets << it.toMap() }
+        render uMap as JSON
+    }
+
+    def currentUser() {
+        Person person = Person.get(session.userId)
+        def uMap = [:]
+        uMap.id = person.id
+        uMap.username = person.username
         render uMap as JSON
     }
 
@@ -31,11 +40,12 @@ class UserController {
         if(!user) {
             user = new Person(params);
             if (!user.save()) {
-                return [ user: user ]
-            } else {
+                redirect view: "index", user: user
+            }
+            else {
                 session.userId = user.id
                 session.username = user.username
-                render view: "index", user: user
+                redirect view: "index"
             }
         }
         else {
@@ -46,18 +56,20 @@ class UserController {
     def login() {
         Person user = Person.findByUsername(params.username)
         if (!user) {
-            render view: "register"
+            redirect view: "register"
         }
         else {
             session.userId = user.id
             session.username = user.username
-            render view: "index", model: [user: user]
+            redirect view: "index"
         }
     }
 
+    // Note: 'render view: "register"' produces an invalidSession error
+    //       but redirect works.
     def logout() {
         session.invalidate()
-        render view: "register"
+        redirect view: "register"
     }
 
     def show() {

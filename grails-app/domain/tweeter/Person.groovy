@@ -21,7 +21,7 @@ class Person extends User {
     }
 
     List<Tweet> getFollowsTweets() {
-        return follows.tweets.flatten()
+        return follows.tweets.flatten().unique()
     }
 
     List<User> getFollows() {

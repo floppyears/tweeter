@@ -1,6 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <a ui-sref="user/{{ tweet.author.username }}">@{{ tweet.author.username }}</a> - {{ tweet.dateCreated }}
+        <a href="/tweeter/user/show/{{ tweet.author.id }}">@{{ tweet.author.username }}</a> - {{ tweet.dateCreated | date:'short' }}
     </div>
     <div class="panel-body">
         <p>{{ tweet.text }}</p>

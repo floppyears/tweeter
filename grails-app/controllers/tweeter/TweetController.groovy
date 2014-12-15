@@ -3,16 +3,15 @@ package tweeter
 import grails.converters.JSON
 
 class TweetController {
-    TweetService ts
+    def tweetService
 
     def index() {
 
     }
 
     def create() {
-        Person person = Person.get(session.userId)
-        flash.tweetMsg = ts.createTweet(person, params.text) ? "success" : "fail"
-        redirect(view:"index", controller:"user")
+        Tweet newTweet = tweetService.createTweet(request.JSON)
+        render newTweet.toMap() as JSON
     }
 
     def delete() {
@@ -21,5 +20,12 @@ class TweetController {
 
     def show() {
 
+    }
+
+    // Get tweets from users followed by current user
+    def getFollowsTweets() {
+        Person person = Person.get(session.userId)
+        def tweets = tweetService.getFollowsTweets(person)
+        render tweets as JSON
     }
 }
